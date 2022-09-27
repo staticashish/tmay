@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "324149748962",
+    "project_id": "tmay-app",
+    "storage_bucket": "tmay-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324149748962:android:a6285f2983cca60e582abb",
+        "android_client_info": {
+          "package_name": "com.techmeal.tmay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324149748962-8rfqmb4r494sp947odc5gue5vsd2vv0j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvT7jhrW09P_1xYN5h9z2EYVC_ZMCQNrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324149748962-8rfqmb4r494sp947odc5gue5vsd2vv0j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "324149748962-j5p657p2eg92ae9u78f0dp1l8n6anbnb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.techmeal.tmay"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
