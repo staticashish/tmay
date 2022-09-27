@@ -40,6 +40,8 @@ dependencies:
   flutter_native_splash: ^2.2.10
   cloud_firestore: ^3.4.9
   firebase_auth: ^3.10.0
+  email_validator: ^2.1.17
+  font_awesome_flutter: ^10.2.1
 
 
 dev_dependencies:
@@ -53,6 +55,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 flutter_native_splash:
+  color: "#ffffff"
   image: assets/images/app_logo_tmay.png
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
