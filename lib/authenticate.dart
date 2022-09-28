@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:tmay/screens/register_screen.dart';
 import 'package:tmay/screens/sign_in_screen.dart';
 
 class Authenticate extends StatefulWidget {
@@ -22,8 +23,7 @@ class _AuthenticateState extends State<Authenticate> {
     if (showSignIn) {
       return SignInScreen(toggleView: toggelView);
     } else {
-      return Text("Register");
-      //return RegisterNew(toggleView: toggelView);
+      return RegisterScreen(toggleView: toggelView);
     }
   }
 }

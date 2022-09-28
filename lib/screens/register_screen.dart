@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,20 +6,22 @@ import 'package:tmay/custom/custom_text_form_field_widget.dart';
 import 'package:tmay/utils/colors_utils.dart';
 import 'package:tmay/utils/widget_utils.dart';
 
-class SignInScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   final Function toggleView;
-
-  const SignInScreen({Key? key, required this.toggleView}) : super(key: key);
+  const RegisterScreen({Key? key, required this.toggleView}) : super(key: key);
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _obscuredText = true;
-  String email = '';
-  String password = '';
+  String firstName = "";
+  String lastName = "";
+  String email = "";
+  String password = "";
+  String confirmPassword = "";
 
   @override
   Widget build(BuildContext context) {
@@ -47,16 +47,68 @@ class _SignInScreenState extends State<SignInScreen> {
               children: <Widget>[
                 logoWidget("assets/images/app_logo_tmay_mint.png"),
                 const SizedBox(
-                  height: 50,
+                  height: 20,
                 ),
                 Form(
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Expanded(
+                            child: CustomTextFormFieldWidget(
+                              isPasswordField: false,
+                              labelText: "First Name",
+                              prefixIconData: FontAwesomeIcons.person,
+                              sufixIconData: null,
+                              onChange: (val) {
+                                setState(() {
+                                  firstName = val;
+                                });
+                              },
+                              onValidate: (val) {
+                                if (val == "") {
+                                  return "Please enter a first name";
+                                }
+                                return null;
+                              },
+                              toggleSuffix: null,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            child: CustomTextFormFieldWidget(
+                              isPasswordField: false,
+                              labelText: "Last Name",
+                              prefixIconData: FontAwesomeIcons.personCirclePlus,
+                              sufixIconData: null,
+                              onChange: (val) {
+                                setState(() {
+                                  lastName = val;
+                                });
+                              },
+                              onValidate: (val) {
+                                if (val == "") {
+                                  return "Please enter a last name";
+                                }
+                                return null;
+                              },
+                              toggleSuffix: null,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       CustomTextFormFieldWidget(
                         isPasswordField: false,
                         labelText: "Enter Email",
                         prefixIconData: FontAwesomeIcons.solidEnvelope,
+                        sufixIconData: null,
                         onChange: (val) {
                           setState(() {
                             email = val;
@@ -70,6 +122,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           }
                           return null;
                         },
+                        toggleSuffix: null,
                       ),
                       const SizedBox(
                         height: 20,
@@ -101,38 +154,36 @@ class _SignInScreenState extends State<SignInScreen> {
                         },
                       ),
                       const SizedBox(
-                        height: 5.0,
+                        height: 20,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          TextButton(
-                            child: Text(
-                              "Forgot Password?",
-                              style: TextStyle(
-                                color: hexStringToColor("#cd2b27"),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 13.0,
-                              ),
-                              textAlign: TextAlign.end,
-                            ),
-                            onPressed: () => {
-                              /*Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SignInNew()))*/
-                              /*_showButtonPressDialog(
-                                  context, 'Forgot Password')*/
-                            },
-                          ),
-                        ],
+                      CustomTextFormFieldWidget(
+                        isPasswordField: _obscuredText,
+                        labelText: "Re-Enter Password",
+                        prefixIconData: FontAwesomeIcons.lock,
+                        onChange: (val) {
+                          setState(() {
+                            confirmPassword = val;
+                          });
+                        },
+                        onValidate: (val) {
+                          if (val == "") {
+                            return "Please re-enter a password";
+                          } else if (confirmPassword != val) {
+                            return "Password does not match";
+                          }
+                          return null;
+                        },
+                        toggleSuffix: () {
+                          setState(() {
+                            _obscuredText = !_obscuredText;
+                          });
+                        },
                       ),
                       const SizedBox(
                         height: 20,
                       ),
                       CustomElevatedButtonWidget(
-                        labelText: "Login",
+                        labelText: "Register",
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             /*dynamic result = await _authService
@@ -149,77 +200,10 @@ class _SignInScreenState extends State<SignInScreen> {
                         height: 20.0,
                       ),
                       Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: Container(
-                              margin: const EdgeInsets.all(8.0),
-                              decoration: BoxDecoration(
-                                  border: Border.all(width: 0.25)),
-                            ),
-                          ),
-                          Text(
-                            "OR CONNECT WITH",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: hexStringToColor("#3a393f"),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              margin: const EdgeInsets.all(8.0),
-                              decoration: BoxDecoration(
-                                  border: Border.all(width: 0.25)),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              print("Google pressed");
-                            },
-                            iconSize: 30.0,
-                            icon: FaIcon(FontAwesomeIcons.googlePlusG),
-                            color: hexStringToColor("#db4a39"),
-                          ),
-                          const SizedBox(
-                            width: 10.0,
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              print("facebook pressed");
-                            },
-                            iconSize: 30.0,
-                            icon: FaIcon(
-                              FontAwesomeIcons.facebook,
-                              color: hexStringToColor("#3b5998"),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10.0,
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              print("linkedin pressed");
-                            },
-                            iconSize: 30.0,
-                            icon: FaIcon(
-                              FontAwesomeIcons.linkedin,
-                              color: hexStringToColor("#0072b1"),
-                            ),
-                          )
-                        ],
-                      ),
-                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Don\'t have an account ?',
+                            'Already have an account ?',
                             style: TextStyle(
                               color: hexStringToColor("#3a393f"),
                               fontSize: 13,
@@ -231,7 +215,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           TextButton(
                             child: Text(
-                              'Register',
+                              'Login',
                               style: TextStyle(
                                 color: hexStringToColor("#cd2b27"),
                                 fontSize: 13.0,
