@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tmay/custom/custom_evelated_button_widget.dart';
 import 'package:tmay/custom/custom_text_form_field_widget.dart';
+import 'package:tmay/services/auth_service.dart';
 import 'package:tmay/utils/colors_utils.dart';
 import 'package:tmay/utils/widget_utils.dart';
 
@@ -16,12 +17,30 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
+  final AuthService _authService = AuthService();
   bool _obscuredText = true;
   String firstName = "";
   String lastName = "";
   String email = "";
   String password = "";
   String confirmPassword = "";
+
+  void _showMaterialDialog(message, titleMessage) {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text(titleMessage),
+          content: Text(message),
+          actions: <Widget>[
+            IconButton(
+              icon: const FaIcon(FontAwesomeIcons.circleXmark),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -189,10 +208,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             /*dynamic result = await _authService
                               .signInWithEmailAndPassword(
                               email, password);*/
-                            print("email => $email password =>$password");
-                            /*if (result.user == null) {
-                            print("==> " + result.error);
-                          }*/
+                            dynamic result = await _authService
+                                .registerWithEmailAndPassword(
+                                email, password, firstName, lastName);
+                            if (result.user == null) {
+                              showToast("Registration failed", hexStringToColor("#cd2b27"));
+                            } else {
+                              showToast("Registration complete", hexStringToColor("#abed5d"));
+                            }
                           }
                         },
                       ),

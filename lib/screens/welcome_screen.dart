@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:tmay/services/auth_service.dart';
 import 'package:tmay/wrapper.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -6,6 +9,11 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(child: Wrapper());
+    AuthService authService = AuthService();
+    return StreamProvider<User?>.value(
+      value: authService.currentUser,
+      initialData: null,
+      child: const Wrapper(),
+    );
   }
 }
