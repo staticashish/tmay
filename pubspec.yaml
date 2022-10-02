@@ -44,6 +44,7 @@ dependencies:
   font_awesome_flutter: ^10.2.1
   fluttertoast: ^8.0.9
   provider: ^6.0.3
+  uuid: ^3.0.6
 
 
 dev_dependencies:
@@ -58,7 +59,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 flutter_native_splash:
   color: "#ffffff"
-  image: assets/images/app_logo_tmay.png
+  image: assets/images/splash_logo_tmay_mint.png
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

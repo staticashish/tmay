@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tmay/custom/custom_evelated_button_widget.dart';
 import 'package:tmay/custom/custom_text_form_field_widget.dart';
+import 'package:tmay/services/auth_service.dart';
 import 'package:tmay/utils/colors_utils.dart';
 import 'package:tmay/utils/widget_utils.dart';
 
@@ -19,6 +20,7 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
+  final AuthService _authService = AuthService();
   bool _obscuredText = true;
   String email = '';
   String password = '';
@@ -42,7 +44,7 @@ class _SignInScreenState extends State<SignInScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.025, 20, 0),
+                20, MediaQuery.of(context).size.height * 0.05, 20, 0),
             child: Column(
               children: <Widget>[
                 logoWidget("assets/images/app_logo_tmay_mint.png"),
@@ -78,7 +80,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         isPasswordField: _obscuredText,
                         labelText: "Enter Password",
                         prefixIconData: FontAwesomeIcons.lock,
-                        sufixIconData: _obscuredText == true
+                        suffixIconData: _obscuredText == true
                             ? FontAwesomeIcons.solidEyeSlash
                             : FontAwesomeIcons.solidEye,
                         onChange: (val) {
@@ -112,7 +114,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               style: TextStyle(
                                 color: hexStringToColor("#cd2b27"),
                                 fontWeight: FontWeight.w500,
-                                fontSize: 13.0,
+                                fontSize: 15.0,
                               ),
                               textAlign: TextAlign.end,
                             ),
@@ -135,13 +137,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         labelText: "Login",
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                            /*dynamic result = await _authService
+                            dynamic result = await _authService
                               .signInWithEmailAndPassword(
-                              email, password);*/
-                            print("email => $email password =>$password");
-                            /*if (result.user == null) {
-                            print("==> " + result.error);
-                          }*/
+                              email, password);
+                            if (result.user == null) {
+                              showToast("Login failed, Check credentials!", hexStringToColor("#cd2b27"));
+                            } else {
+                              showToast("Login success", hexStringToColor("#abed5d"));
+                            }
                           }
                         },
                       ),
@@ -160,6 +163,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           Text(
                             "OR CONNECT WITH",
                             style: TextStyle(
+                              fontSize: 15.0,
                               fontWeight: FontWeight.bold,
                               color: hexStringToColor("#3a393f"),
                             ),
@@ -222,7 +226,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             'Don\'t have an account ?',
                             style: TextStyle(
                               color: hexStringToColor("#3a393f"),
-                              fontSize: 13,
+                              fontSize: 15,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -234,7 +238,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               'Register',
                               style: TextStyle(
                                 color: hexStringToColor("#cd2b27"),
-                                fontSize: 13.0,
+                                fontSize: 15.0,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),

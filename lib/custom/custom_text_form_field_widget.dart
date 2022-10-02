@@ -7,8 +7,9 @@ class CustomTextFormFieldWidget extends StatefulWidget {
   final Function(String val) onChange;
   final String labelText;
   final bool isPasswordField;
+  final int? maxLines;
   final IconData? prefixIconData;
-  final IconData? sufixIconData;
+  final IconData? suffixIconData;
   final Function()? toggleSuffix;
 
   const CustomTextFormFieldWidget(
@@ -18,8 +19,9 @@ class CustomTextFormFieldWidget extends StatefulWidget {
       required this.labelText,
       required this.isPasswordField,
       this.prefixIconData,
-      this.sufixIconData,
-      this.toggleSuffix})
+      this.suffixIconData,
+      this.toggleSuffix,
+      this.maxLines})
       : super(key: key);
 
   @override
@@ -35,12 +37,14 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
       onChanged: widget.onChange,
       obscureText: widget.isPasswordField,
       textAlign: TextAlign.left,
+      maxLines: widget.maxLines ?? 1,
       decoration: InputDecoration(
         prefixIcon: Padding(
           padding: const EdgeInsets.all(10.0),
           child: FaIcon(
             widget.prefixIconData,
             color: hexStringToColor("#bcbcbd"),
+            size: 20.0,
           ),
         ),
         suffixIcon: IconButton(
@@ -48,15 +52,14 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
             widget.toggleSuffix!();
           },
           icon: FaIcon(
-            widget.sufixIconData,
+            widget.suffixIconData,
             color: hexStringToColor("#bcbcbd"),
+            size: 20.0,
           ), //Icons.remove_red_eye_rounded),
         ),
         labelText: widget.labelText,
-        labelStyle: TextStyle(
-          color: hexStringToColor("#bcbcbd"),
-          fontSize: 13.0
-        ),
+        labelStyle:
+            TextStyle(color: hexStringToColor("#bcbcbd"), fontSize: 15.0),
       ),
     );
   }

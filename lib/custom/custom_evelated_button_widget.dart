@@ -4,23 +4,28 @@ import 'package:tmay/utils/colors_utils.dart';
 class CustomElevatedButtonWidget extends StatelessWidget {
   final Function() onPressed;
   final String labelText;
-  const CustomElevatedButtonWidget({Key? key, required this.onPressed, required this.labelText}) : super(key: key);
+  final Size? buttonSize;
+  const CustomElevatedButtonWidget(
+      {Key? key, required this.onPressed, required this.labelText, this.buttonSize})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: hexStringToColor("#fd9333"),
-        shadowColor:  hexStringToColor("#8685EF"),
+        shadowColor: hexStringToColor("#8685EF"),
+        fixedSize: buttonSize,
         elevation: 15,
         shape: RoundedRectangleBorder(
-          borderRadius:
-          BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         textStyle: const TextStyle(
-            fontSize: 50,
-            fontWeight: FontWeight.bold),
+          fontSize: 50,
+          fontWeight: FontWeight.bold,
+        ),
       ),
+
       onPressed: onPressed,
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -28,15 +33,14 @@ class CustomElevatedButtonWidget extends StatelessWidget {
           horizontal: 20.0,
         ),
         child: Row(
-          mainAxisAlignment:
-          MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
               child: Text(
                 labelText,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                    color: Colors.black87,
+                style: TextStyle(
+                    color: hexStringToColor("#fefefe"),
                     fontWeight: FontWeight.w600,
                     fontSize: 20.0),
               ),

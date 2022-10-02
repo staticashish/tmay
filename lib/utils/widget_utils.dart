@@ -13,8 +13,8 @@ showToast(String messageText, Color toastColor) {
       msg: messageText,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 5,
-      backgroundColor: toastColor, //hexStringToColor("#79787a"),
+      timeInSecForIosWeb: 3,
+      backgroundColor: toastColor,
       textColor: hexStringToColor("#fefefe"),
       fontSize: 15.0);
 }

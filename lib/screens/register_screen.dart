@@ -61,7 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.025, 20, 0),
+                20, MediaQuery.of(context).size.height * 0.05, 20, 0),
             child: Column(
               children: <Widget>[
                 logoWidget("assets/images/app_logo_tmay_mint.png"),
@@ -80,7 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               isPasswordField: false,
                               labelText: "First Name",
                               prefixIconData: FontAwesomeIcons.person,
-                              sufixIconData: null,
+                              suffixIconData: null,
                               onChange: (val) {
                                 setState(() {
                                   firstName = val;
@@ -103,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               isPasswordField: false,
                               labelText: "Last Name",
                               prefixIconData: FontAwesomeIcons.personCirclePlus,
-                              sufixIconData: null,
+                              suffixIconData: null,
                               onChange: (val) {
                                 setState(() {
                                   lastName = val;
@@ -127,7 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         isPasswordField: false,
                         labelText: "Enter Email",
                         prefixIconData: FontAwesomeIcons.solidEnvelope,
-                        sufixIconData: null,
+                        suffixIconData: null,
                         onChange: (val) {
                           setState(() {
                             email = val;
@@ -150,7 +150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         isPasswordField: _obscuredText,
                         labelText: "Enter Password",
                         prefixIconData: FontAwesomeIcons.lock,
-                        sufixIconData: _obscuredText == true
+                        suffixIconData: _obscuredText == true
                             ? FontAwesomeIcons.solidEyeSlash
                             : FontAwesomeIcons.solidEye,
                         onChange: (val) {
@@ -229,7 +229,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             'Already have an account ?',
                             style: TextStyle(
                               color: hexStringToColor("#3a393f"),
-                              fontSize: 13,
+                              fontSize: 15,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -241,7 +241,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               'Login',
                               style: TextStyle(
                                 color: hexStringToColor("#cd2b27"),
-                                fontSize: 13.0,
+                                fontSize: 15.0,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
