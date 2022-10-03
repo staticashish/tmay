@@ -27,14 +27,14 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
         builder: (BuildContext context) {
           if (widget.isSubPage != null && widget.isSubPage == true) {
             return IconButton(
-              icon: const FaIcon(FontAwesomeIcons.backward),
+              icon: const FaIcon(FontAwesomeIcons.circleArrowLeft),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             );
           } else {
             return IconButton(
-              icon: const FaIcon(FontAwesomeIcons.ellipsisVertical),
+              icon: const FaIcon(FontAwesomeIcons.barsStaggered),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },

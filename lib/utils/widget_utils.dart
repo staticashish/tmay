@@ -8,13 +8,13 @@ Image logoWidget(String imageName) {
       fit: BoxFit.fitWidth, width: 300, height: 300);
 }
 
-showToast(String messageText, Color toastColor) {
+showToast(String messageText) {
   Fluttertoast.showToast(
       msg: messageText,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 3,
-      backgroundColor: toastColor,
+      backgroundColor: hexStringToColor("#79787a"),
       textColor: hexStringToColor("#fefefe"),
       fontSize: 15.0);
 }

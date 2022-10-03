@@ -138,12 +138,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             dynamic result = await _authService
-                              .signInWithEmailAndPassword(
-                              email, password);
+                                .signInWithEmailAndPassword(email, password);
                             if (result.user == null) {
-                              showToast("Login failed, Check credentials!", hexStringToColor("#cd2b27"));
+                              showToast("Login failed, Check credentials!");
                             } else {
-                              showToast("Login success", hexStringToColor("#abed5d"));
+                              showToast("Login success");
                             }
                           }
                         },
@@ -188,7 +187,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               print("Google pressed");
                             },
                             iconSize: 30.0,
-                            icon: FaIcon(FontAwesomeIcons.googlePlusG),
+                            icon: const FaIcon(FontAwesomeIcons.googlePlusG),
                             color: hexStringToColor("#db4a39"),
                           ),
                           const SizedBox(

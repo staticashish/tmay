@@ -212,9 +212,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 .registerWithEmailAndPassword(
                                 email, password, firstName, lastName);
                             if (result.user == null) {
-                              showToast("Registration failed", hexStringToColor("#cd2b27"));
+                              showToast("Registration failed");
                             } else {
-                              showToast("Registration complete", hexStringToColor("#abed5d"));
+                              showToast("Registration complete");
                             }
                           }
                         },
