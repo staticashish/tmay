@@ -60,6 +60,7 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                 ),
                 CustomTextFormFieldWidget(
                   isPasswordField: false,
+                  maxLines: 2,
                   labelText: "Enter Project Description",
                   prefixIconData: FontAwesomeIcons.fileCirclePlus,
                   onChange: (val) {

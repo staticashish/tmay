@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:tmay/custom/custom_app_bar_widget.dart';
 import 'package:tmay/custom/custom_card_widget.dart';
@@ -10,6 +11,7 @@ import 'package:tmay/screens/add_project_screen.dart';
 import 'package:tmay/screens/project_details_screen.dart';
 import 'package:tmay/services/auth_service.dart';
 import 'package:tmay/services/database_service.dart';
+import 'package:tmay/utils/colors_utils.dart';
 import 'package:tmay/utils/widget_utils.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -68,8 +70,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: const CustomLeftNavigationWidget(),
       appBar: CustomAppBarWidget(title: "Dashboard", searchDelegate: null),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: hexStringToColor("#fd9333"),
+          child: const FaIcon(FontAwesomeIcons.solidSquarePlus),
+          onPressed: () {
+            _showProjectAdd(user?.uid);
+          }),
       body: Padding(
-        padding: const EdgeInsets.all(40.0),
+        padding: const EdgeInsets.all(20.0),
         child: CustomScrollView(slivers: [
           SliverGrid(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

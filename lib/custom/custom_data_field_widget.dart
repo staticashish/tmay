@@ -9,34 +9,28 @@ class CustomDataFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                titleText,
-                style: TextStyle(
-                  color: hexStringToColor("#79787a"),
-                  fontSize: 15,
-                ),
-              ),
-              const SizedBox(
-                height: 2,
-              ),
-              Text(
-                valueText,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: hexStringToColor("#3a393f"),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Text(
+          titleText,
+          style: TextStyle(
+            color: hexStringToColor("#79787a"),
+            fontSize: 15,
           ),
-        ],
-      ),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Text(
+          valueText,
+          style: TextStyle(
+            fontSize: 20,
+            color: hexStringToColor("#3a393f"),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 }

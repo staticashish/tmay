@@ -35,9 +35,7 @@ class DatabaseService {
   }
 
   List<ProjectModel> _projectListFromSnapshot(QuerySnapshot snapshot) {
-    print("help${snapshot.docs.length}");
     return snapshot.docs!.map((doc) {
-      print("in...");
       return ProjectModel.fromSnapshot(doc);
     }).toList();
   }
