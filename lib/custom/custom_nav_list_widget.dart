@@ -50,7 +50,7 @@ class _CustomNavListWidgetState extends State<CustomNavListWidget> {
                     ),
                   ],
                 ),
-                const FaIcon(FontAwesomeIcons.arrowRight),
+                const FaIcon(FontAwesomeIcons.arrowRightLong),
               ],
             ),
           ),

@@ -7,6 +7,8 @@ import 'package:tmay/screens/home_screen.dart';
 import 'package:tmay/services/auth_service.dart';
 import 'package:tmay/services/database_service.dart';
 
+import '../services/project_database_service.dart';
+
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
 
@@ -44,7 +46,7 @@ class _StartScreenState extends State<StartScreen> {
         StreamProvider<User?>.value(
             initialData: null, value: authService.userStream),
         StreamProvider<List<ProjectModel>>.value(
-            initialData: [], value: DatabaseService(uid: user?.uid).projects),
+            initialData: [], value: ProjectDatabaseService(uid: user?.uid).projects),
       ],
       child: Scaffold(
         body: widgetOptions[_selectedIndex],

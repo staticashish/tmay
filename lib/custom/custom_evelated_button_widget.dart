@@ -6,8 +6,13 @@ class CustomElevatedButtonWidget extends StatelessWidget {
   final Function() onPressed;
   final String labelText;
   final Size? buttonSize;
+  final IconData? iconData;
   const CustomElevatedButtonWidget(
-      {Key? key, required this.onPressed, required this.labelText, this.buttonSize})
+      {Key? key,
+      required this.onPressed,
+      required this.labelText,
+      this.buttonSize,
+      this.iconData})
       : super(key: key);
 
   @override
@@ -32,18 +37,34 @@ class CustomElevatedButtonWidget extends StatelessWidget {
           vertical: 20.0,
           horizontal: 20.0,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Text(
-                labelText,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: hexStringToColor("#fefefe"),
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20.0),
-              ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            if(iconData != null) Row(
+              children: <Widget>[
+                Expanded(
+                  child: Center(
+                    child: FaIcon(
+                      iconData,
+                      size: 50.0,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    labelText,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: hexStringToColor("#fefefe"),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20.0),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

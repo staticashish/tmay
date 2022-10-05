@@ -27,7 +27,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
         builder: (BuildContext context) {
           if (widget.isSubPage != null && widget.isSubPage == true) {
             return IconButton(
-              icon: const FaIcon(FontAwesomeIcons.circleArrowLeft),
+              icon: const FaIcon(FontAwesomeIcons.arrowLeftLong),
               onPressed: () {
                 Navigator.of(context).pop();
               },

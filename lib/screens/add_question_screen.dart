@@ -6,30 +6,37 @@ import 'package:tmay/custom/custom_app_bar_widget.dart';
 import 'package:tmay/custom/custom_evelated_button_widget.dart';
 import 'package:tmay/custom/custom_text_form_field_widget.dart';
 import 'package:tmay/models/project_model.dart';
+import 'package:tmay/models/question_model.dart';
 import 'package:tmay/services/database_service.dart';
 import 'package:tmay/services/project_database_service.dart';
+import 'package:tmay/services/question_database_service.dart';
 import 'package:tmay/utils/widget_utils.dart';
 import 'package:uuid/uuid.dart';
 
-class AddProjectScreen extends StatefulWidget {
-  const AddProjectScreen({Key? key}) : super(key: key);
+class AddQuestionScreen extends StatefulWidget {
+  final ProjectModel projectModel;
+  const AddQuestionScreen({Key? key, required this.projectModel})
+      : super(key: key);
 
   @override
-  State<AddProjectScreen> createState() => _AddProjectScreenState();
+  State<AddQuestionScreen> createState() => _AddQuestionScreenState();
 }
 
-class _AddProjectScreenState extends State<AddProjectScreen> {
-  String projectName = "";
-  String projectDescription = "";
+class _AddQuestionScreenState extends State<AddQuestionScreen> {
   final _formKey = GlobalKey<FormState>();
   final uuid = const Uuid();
+  String question = "";
 
-  void _onCreate(
-      String projectId, String projectName, String projectDesc, String uid) {
-    ProjectDatabaseService projectDatabaseService = ProjectDatabaseService(uid: uid);
-    ProjectModel projectModel = ProjectModel(projectId, projectName, projectDesc);
-    projectDatabaseService.addProjectData(projectModel);
-    showToast("Project added");
+  void _onCreate(String questionId, String question, String uid) {
+    var projectKey = widget.projectModel.key;
+    if(projectKey != null) {
+      print("project Key while saving question =>$projectKey");
+    }
+
+    QuestionDatabaseService questionDatabaseService = QuestionDatabaseService(uid: uid, questionId: questionId, projectId: projectKey!);
+    QuestionModel questionModel = QuestionModel(questionId, question);
+    questionDatabaseService.addQuestionData(questionModel);
+    showToast("Question added");
   }
 
   @override
@@ -38,7 +45,7 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
 
     return Scaffold(
       appBar: CustomAppBarWidget(
-        title: "Add Project",
+        title: "Add Question",
         isSubPage: true,
       ),
       body: SingleChildScrollView(
@@ -51,36 +58,16 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
               children: <Widget>[
                 CustomTextFormFieldWidget(
                   isPasswordField: false,
-                  labelText: "Enter Project name",
-                  prefixIconData: FontAwesomeIcons.solidFolder,
+                  labelText: "Enter Question",
+                  prefixIconData: FontAwesomeIcons.question,
                   onChange: (val) {
                     setState(() {
-                      projectName = val;
+                      question = val;
                     });
                   },
                   onValidate: (val) {
                     if (val == "") {
-                      return "Please enter a project name";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomTextFormFieldWidget(
-                  isPasswordField: false,
-                  maxLines: 2,
-                  labelText: "Enter Project Description",
-                  prefixIconData: FontAwesomeIcons.fileCirclePlus,
-                  onChange: (val) {
-                    setState(() {
-                      projectDescription = val;
-                    });
-                  },
-                  onValidate: (val) {
-                    if (val == "") {
-                      return "Please enter a project description";
+                      return "Please enter a question";
                     }
                     return null;
                   },
@@ -89,16 +76,11 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                   height: 20,
                 ),
                 CustomElevatedButtonWidget(
-                  labelText: "Add Project",
+                  labelText: "Add Question",
                   onPressed: () async {
-                    String projectId = uuid.v1();
+                    String questionId = uuid.v1();
                     if (_formKey.currentState!.validate()) {
-                      _onCreate(
-                        projectId,
-                        projectName,
-                        projectDescription,
-                        user.uid,
-                      );
+                      _onCreate(questionId, question, user.uid);
                       Navigator.pop(context);
                     }
                   },

@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return StreamProvider<User?>.value(
               initialData: authService.currentUser,
               value: authService.userStream,
-              child: AddProjectScreen(onCreate: _onCreate));
+              child: const AddProjectScreen());
         },
       ),
     );
@@ -53,15 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _onCreate(
-      String projectId, String projectName, String projectDesc, String uid) {
-    DatabaseService databaseService = DatabaseService(uid: uid);
-    ProjectModel projectModel =
-        ProjectModel(projectId, projectName, projectDesc);
-    databaseService.addProjectRoomData(projectModel);
-    showToast("Project added");
-  }
-
   @override
   Widget build(BuildContext context) {
     var projects = Provider.of<List<ProjectModel>>(context);
@@ -70,12 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: const CustomLeftNavigationWidget(),
       appBar: CustomAppBarWidget(title: "Dashboard", searchDelegate: null),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: hexStringToColor("#fd9333"),
-          child: const FaIcon(FontAwesomeIcons.solidSquarePlus),
-          onPressed: () {
-            _showProjectAdd(user?.uid);
-          }),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: CustomScrollView(slivers: [
@@ -92,7 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       _showProjectAdd(user?.uid);
                     },
-                    labelText: "+ Add Project",
+                    labelText: "Add Project",
+                    iconData: FontAwesomeIcons.squarePlus,
                   );
                 }
                 if (projects.isNotEmpty) {
