@@ -10,9 +10,6 @@ import 'package:tmay/models/project_model.dart';
 import 'package:tmay/screens/add_project_screen.dart';
 import 'package:tmay/screens/project_details_screen.dart';
 import 'package:tmay/services/auth_service.dart';
-import 'package:tmay/services/database_service.dart';
-import 'package:tmay/utils/colors_utils.dart';
-import 'package:tmay/utils/widget_utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

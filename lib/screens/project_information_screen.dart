@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tmay/custom/custom_data_field_widget.dart';
 import 'package:tmay/models/project_model.dart';
-import 'package:tmay/utils/colors_utils.dart';
 
 class ProjectInformationScreen extends StatelessWidget {
   final ProjectModel projectModel;

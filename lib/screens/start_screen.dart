@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:tmay/custom/custom_bottom_navigation_widget.dart';
 import 'package:tmay/models/project_model.dart';
 import 'package:tmay/screens/home_screen.dart';
+import 'package:tmay/screens/test_screen.dart';
 import 'package:tmay/services/auth_service.dart';
-import 'package:tmay/services/database_service.dart';
 
 import '../services/project_database_service.dart';
 
@@ -30,9 +30,7 @@ class _StartScreenState extends State<StartScreen> {
       const TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> widgetOptions = <Widget>[
     const HomeScreen(),
-    const Center(
-      child: Text("Profile"),
-    ),
+    const TestScreen(),
   ];
 
   @override

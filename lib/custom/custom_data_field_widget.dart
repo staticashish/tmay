@@ -17,6 +17,7 @@ class CustomDataFieldWidget extends StatelessWidget {
           style: TextStyle(
             color: hexStringToColor("#79787a"),
             fontSize: 15,
+            fontWeight: FontWeight.w400,
           ),
         ),
         const SizedBox(
@@ -25,9 +26,9 @@ class CustomDataFieldWidget extends StatelessWidget {
         Text(
           valueText,
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 15,
             color: hexStringToColor("#3a393f"),
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ],

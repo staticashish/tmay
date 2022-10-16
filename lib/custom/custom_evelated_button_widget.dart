@@ -22,7 +22,7 @@ class CustomElevatedButtonWidget extends StatelessWidget {
         backgroundColor: hexStringToColor("#fd9333"),
         shadowColor: hexStringToColor("#8685EF"),
         fixedSize: buttonSize,
-        elevation: 15,
+        elevation: 5,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),

@@ -1,6 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:tmay/auth_wrapper.dart';
+import 'package:tmay/utils/colors_utils.dart';
+
 import 'models/firebase_options.dart';
 
 Future<void> main() async {
@@ -21,7 +25,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const AuthWrapper(),
+      home: LoaderOverlay(
+        useDefaultLoading: false,
+        overlayWidget: Center(
+          child: SpinKitSpinningLines(
+            color: hexStringToColor("#f369a2"),
+          ),
+        ),
+        child: const AuthWrapper(),
+      ),
     );
   }
 }

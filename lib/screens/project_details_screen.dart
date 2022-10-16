@@ -73,7 +73,7 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
               Row(
                 children: <Widget>[
                   Text(
-                    "Project Information",
+                    "Basic Information",
                     style: TextStyle(
                       fontSize: 25.0,
                       fontWeight: FontWeight.bold,
@@ -114,7 +114,7 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
                 ],
               ),
               const SizedBox(
-                height: 30,
+                height: 20,
               ),
               const QuestionListScreen(),
             ],
